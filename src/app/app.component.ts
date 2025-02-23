@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
-import { TaskListComponent } from './task-list/task-list.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HelloWorldComponent, TaskListComponent, FormsModule],  // Import other standalone components
+  imports: [FormsModule, NavbarComponent], // ✅ Only import what's needed
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'My Angular 19 App';
-  taskTitle: string = '';  // Declare taskTitle here
+  taskTitle: string = '';
   tasks: { id: number; title: string; completed: boolean }[] = [];
 
   addTask() {
@@ -23,7 +23,7 @@ export class AppComponent {
         completed: false
       };
       this.tasks.push(newTask);
-      this.taskTitle = '';  // Clear input field after adding the task
+      this.taskTitle = '';
     }
   }
 }

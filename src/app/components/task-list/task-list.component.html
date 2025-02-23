@@ -1,7 +1,15 @@
-<ul>
+<app-add-task (taskAdded)="addNewTask($event)"></app-add-task>
+
+<p>Task Count: {{ tasks.length }}</p>
+
+<ul *ngIf="tasks.length > 0; else noTasks">
   <li *ngFor="let task of tasks">
     <input type="checkbox" [(ngModel)]="task.completed" />
     <span [ngClass]="{ completed: task.completed }">{{ task.title }}</span>
     <button (click)="deleteTask(task.id)">Delete</button>
   </li>
 </ul>
+
+<ng-template #noTasks>
+  <p>No tasks yet! Add a new task above.</p>
+</ng-template>
